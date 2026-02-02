@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Valentine Special</title>
+
+<!-- Google Bubblegum Font -->
+<link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap" rel="stylesheet">
+
+<style>
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: 'Bubblegum Sans', cursive;
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: 1s;
+    background-color: #fff;
+}
+
+/* Glass card style */
+.card {
+    background: rgba(255, 182, 193, 0.3);
+    padding: 5vw;
+    border-radius: 25px;
+    max-width: 90%;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+}
+
+h1 {
+    font-size: 8vw;
+    color: #ff0055;
+    text-shadow: 0 0 8px #ffe4e6;
+    margin: 0 0 2vw 0;
+}
+
+p {
+    font-size: 4vw;
+    color: #990033;
+    text-shadow: 0 0 6px #ffe4e6;
+    margin-top: 1vw;
+}
+
+button {
+    padding: 1vw 3vw;
+    font-size: 4vw;
+    border: none;
+    border-radius: 30px;
+    background: #ff7abf;
+    cursor: pointer;
+    margin: 1vw;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ff004f;
+    color: white;
+}
+
+/* Floating hearts using CSS shapes */
+.heart {
+    position: fixed;
+    bottom: -3vw;
+    width: 2vw;
+    height: 2vw;
+    background: #ff004f;
+    transform: rotate(-45deg);
+    animation: floatUp 6s linear infinite;
+}
+
+.heart:before, .heart:after {
+    content: "";
+    position: absolute;
+    width: 2vw;
+    height: 2vw;
+    background: #ff004f;
+    border-radius: 50%;
+}
+
+.heart:before { top: -1vw; left: 0; }
+.heart:after { top: 0; left: 1vw; }
+
+@keyframes floatUp {
+    from {transform: translateY(0) rotate(-45deg); opacity: 1;}
+    to {transform: translateY(-130vh) rotate(-45deg); opacity: 0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Slide 1 -->
+<div id="slide1">
+    <div class="card" style="background-color: #FFC0CB;">
+        <h1>Click Here, Love</h1>
+        <button onclick="nextSlide(2)">Click</button>
+    </div>
+</div>
+
+<!-- Slide 2 -->
+<div id="slide2" style="display:none;">
+    <div class="card" style="background-color: #FFB6C1;">
+        <h1>For six months, we've been together</h1>
+        <p>Time flies when we're together!</p>
+        <button onclick="nextSlide(3)">Next</button>
+    </div>
+</div>
+
+<!-- Slide 3 -->
+<div id="slide3" style="display:none;">
+    <div class="card" style="background-color: #FF69B4;">
+        <h1>Now for the million-dollar question</h1>
+        <p>Click below to see</p>
+        <button onclick="nextSlide(4)">Click</button>
+    </div>
+</div>
+
+<!-- Slide 4 -->
+<div id="slide4" style="display:none;">
+    <div class="card" style="background-color: #FFC0CB;">
+        <h1>Will you be my Valentine?</h1>
+        <button onclick="showLove()">Yes</button>
+        <button onclick="showNo()">No</button>
+    </div>
+</div>
+
+<!-- Slide 5 (No / Pick Again) -->
+<div id="slide5" style="display:none;">
+    <div class="card" style="background-color: #FFB6C1;">
+        <h1>This ain't a choice</h1>
+        <button onclick="pickAgain()">Pick Again</button>
+    </div>
+</div>
+
+<!-- Slide 6 (Love Message) -->
+<div id="slide6" style="display:none;">
+    <div class="card" style="background-color: #FF69B4;">
+        <h1>That's my Girl!</h1>
+        <p>
+            Bro, I love you more than I ever thought I could love someone.  
+            You are my favorite person, my comfort, my happiness, my peace.  
+            Every moment with you feels special, and every memory with you is priceless.  
+            You make my heart beat faster and my mind calmer at the same time.  
+            I choose you today, tomorrow, and for the rest of my life.  
+            Thank you for being my Valentine and my forever.  
+            I LOVE YOU
+        </p>
+    </div>
+</div>
+
+<script>
+// Show a specific slide
+function nextSlide(num){
+    for(let i=1; i<=6; i++){
+        document.getElementById("slide"+i).style.display = "none";
+    }
+    document.getElementById("slide"+num).style.display = "block";
+}
+
+// Yes button
+function showLove(){
+    nextSlide(6);
+}
+
+// No button
+function showNo(){
+    nextSlide(5);
+}
+
+// Pick Again button
+function pickAgain(){
+    nextSlide(4);
+}
+
+// Floating hearts animation
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+}, 300);
+</script>
+
+</body>
+</html>
